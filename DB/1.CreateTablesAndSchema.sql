@@ -39,7 +39,7 @@ CREATE TABLE meals.Meal (
 	Name varchar(255) NOT NULL
 )
 
-CREATE TABLE meals.RecipeMeal (
+CREATE TABLE meals.MealRecipe (
     MealId   int NOT NULL,
     RecipeId int NOT NULL,
     CONSTRAINT PK_RecipeMeal PRIMARY KEY (MealId, RecipeId)

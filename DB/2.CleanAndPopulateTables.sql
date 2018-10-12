@@ -45,8 +45,8 @@ SELECT setval('meals.meal_id_seq',1);
 INSERT INTO meals.Meal (name) VALUES 
 ('Spaghetti Casserole');
 
-TRUNCATE TABLE meals.RecipeMeal;
-INSERT INTO meals.RecipeMeal (mealid, recipeid) VALUES
+TRUNCATE TABLE meals.MealRecipe;
+INSERT INTO meals.MealRecipe (mealid, recipeid) VALUES
 (2,2);
 
 SELECT

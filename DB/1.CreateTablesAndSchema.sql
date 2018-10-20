@@ -2,7 +2,7 @@ CREATE SCHEMA meals
 
 CREATE TABLE meals.Ingredient (
 	Id      serial       CONSTRAINT PK_Ingredient PRIMARY KEY,
-	Name    varchar(255) NOT NULL,
+	Name    varchar(255) NOT NULL
 )
 
 CREATE TABLE meals.Store (

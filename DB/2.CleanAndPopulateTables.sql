@@ -8,7 +8,7 @@ INSERT INTO meals.Store (name) VALUES
 
 TRUNCATE meals.Ingredient;
 SELECT SETVAL('meals.ingredient_id_seq', 1);
-INSERT INTO meals.Ingredient (name, storeid) VALUES
+INSERT INTO meals.Ingredient (name) VALUES
 	('Spaghetti'),
 	('Shredded Mozzarella Cheese'),
 	('Sour Cream'),
@@ -55,10 +55,10 @@ INSERT INTO meals.IngredientStore (ingredientid, storeid, priority) VALUES
 (2,3,1),
 (3,3,1),
 (4,3,1),
-(5,3,1),s
+(5,3,1),
 (6,3,1),
 (7,3,1),
-(8,3,1),
+(8,3,1);
 
 
 SELECT

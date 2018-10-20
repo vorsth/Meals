@@ -8,14 +8,14 @@ INSERT INTO meals.Store (name) VALUES
 
 TRUNCATE meals.Ingredient;
 SELECT SETVAL('meals.ingredient_id_seq', 1);
-INSERT INTO meals.Ingredient (name, storeid) VALUES 
-	('Spaghetti', 2),
-	('Shredded Mozzarella Cheese', 3),
-	('Sour Cream', 3),
-	('Frozen Chopped Spinach', 3),
-	('Egg', 3),
-	('Garlic Salt', 4),
-	('Spaghetti Sauce', 3);
+INSERT INTO meals.Ingredient (name, storeid) VALUES
+	('Spaghetti'),
+	('Shredded Mozzarella Cheese'),
+	('Sour Cream'),
+	('Frozen Chopped Spinach'),
+	('Egg'),
+	('Garlic Salt'),
+	('Spaghetti Sauce');
 
 TRUNCATE meals.Unit;
 SELECT SETVAL('meals.unit_id_seq', 1);
@@ -42,12 +42,24 @@ INSERT INTO meals.RecipeIngredient (recipeid, ingredientid, quantity, unitid) VA
 
 TRUNCATE TABLE meals.Meal;
 SELECT setval('meals.meal_id_seq',1);
-INSERT INTO meals.Meal (name) VALUES 
+
+INSERT INTO meals.Meal (name) VALUES
 ('Spaghetti Casserole');
 
 TRUNCATE TABLE meals.MealRecipe;
 INSERT INTO meals.MealRecipe (mealid, recipeid) VALUES
 (2,2);
+
+TRUNCATE TABLE meals.IngredientStore;
+INSERT INTO meals.IngredientStore (ingredientid, storeid, priority) VALUES
+(2,3,1),
+(3,3,1),
+(4,3,1),
+(5,3,1),s
+(6,3,1),
+(7,3,1),
+(8,3,1),
+
 
 SELECT
 	recipe.name,

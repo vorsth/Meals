@@ -2,8 +2,7 @@ CREATE SCHEMA meals
 
 CREATE TABLE meals.Ingredient (
 	Id      serial       CONSTRAINT PK_Ingredient PRIMARY KEY,
-	Name    varchar(255) NOT NULL,
-	StoreId int
+	Name    varchar(255) NOT NULL
 )
 
 CREATE TABLE meals.Store (
@@ -43,4 +42,11 @@ CREATE TABLE meals.MealRecipe (
     MealId   int NOT NULL,
     RecipeId int NOT NULL,
     CONSTRAINT PK_RecipeMeal PRIMARY KEY (MealId, RecipeId)
+)
+
+CREATE TABLE meals.IngredientStore (
+    IngredientId   int NOT NULL,
+    StoreId int NOT NULL,
+		Priority in NOT NULL,
+    CONSTRAINT PK_IngredientStore PRIMARY KEY (IngredientId, StoreId)
 )

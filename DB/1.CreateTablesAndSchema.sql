@@ -47,6 +47,6 @@ CREATE TABLE meals.MealRecipe (
 CREATE TABLE meals.IngredientStore (
     IngredientId   int NOT NULL,
     StoreId int NOT NULL,
-		Priority in NOT NULL,
+    Priority int NOT NULL,
     CONSTRAINT PK_IngredientStore PRIMARY KEY (IngredientId, StoreId)
 )

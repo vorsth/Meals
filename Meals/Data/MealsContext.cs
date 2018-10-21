@@ -40,5 +40,7 @@ namespace Meals.Models
         public DbSet<Meals.Models.RecipeIngredient> RecipeIngredient { get; set; }
 
         public DbSet<Meals.Models.MealRecipe> MealRecipe { get; set; }
+
+        public DbSet<Meals.Models.Recipe> Recipe { get; set; }
     }
 }

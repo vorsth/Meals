@@ -55,7 +55,7 @@ namespace Meals.Controllers.API
                 return BadRequest(ModelState);
             }
 
-            if (recipeId != recipeIngredient.RecipeId || ingredientId != recipeIngredient.IngredientId)
+            if (recipeId != recipeIngredient.Recipe.Id || ingredientId != recipeIngredient.Ingredient.Id)
             {
                 return BadRequest();
             }
@@ -97,7 +97,7 @@ namespace Meals.Controllers.API
             }
             catch (DbUpdateException)
             {
-                if (RecipeIngredientExists(recipeIngredient.RecipeId, recipeIngredient.IngredientId))
+                if (RecipeIngredientExists(recipeIngredient.Recipe.Id, recipeIngredient.Ingredient.Id))
                 {
                     return new StatusCodeResult(StatusCodes.Status409Conflict);
                 }
@@ -107,7 +107,7 @@ namespace Meals.Controllers.API
                 }
             }
 
-            return CreatedAtAction("GetRecipeIngredient", new { id = recipeIngredient.RecipeId }, recipeIngredient);
+            return CreatedAtAction("GetRecipeIngredient", new { id = recipeIngredient.Recipe.Id }, recipeIngredient);
         }
 
         // DELETE: api/RecipeIngredients/5
@@ -133,7 +133,7 @@ namespace Meals.Controllers.API
 
         private bool RecipeIngredientExists(int recipeId, int ingredientId)
         {
-            return _context.RecipeIngredient.Any(e => e.RecipeId == recipeId && e.IngredientId == ingredientId);
+            return _context.RecipeIngredient.Any(e => e.Recipe.Id == recipeId && e.Ingredient.Id == ingredientId);
         }
     }
 }

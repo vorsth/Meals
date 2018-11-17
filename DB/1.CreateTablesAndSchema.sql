@@ -21,13 +21,13 @@ CREATE TABLE meals.Recipe (
 CREATE TABLE meals.Unit (
 	Id          serial       CONSTRAINT PK_Unit PRIMARY KEY,
 	Name        varchar(255) NOT NULL,
-	BaseUnitId  int          NULL,
-	Multiplier  real       NULL
+	BaseUnitId  int          NULL      REFERENCES meals.Unit(Id),
+	Multiplier  real         NULL
 )
 
 CREATE TABLE meals.RecipeIngredient (
-	RecipeId    int NOT NULL,
-	IngredientId int NOT NULL,
+	RecipeId     int NOT NULL  REFERENCES meals.Recipe(Id),
+	IngredientId int NOT NULL REFERENCES meals.Ingredient(Id),
 	Quantity     int NOT NULL,
 	UnitId       int NOT NULL,
 	CONSTRAINT PK_RecipeIngredient PRIMARY KEY (RecipeID, IngredientID)
@@ -39,14 +39,14 @@ CREATE TABLE meals.Meal (
 )
 
 CREATE TABLE meals.MealRecipe (
-    MealId   int NOT NULL,
-    RecipeId int NOT NULL,
+    MealId   int NOT NULL REFERENCES meals.Meal(Id),
+    RecipeId int NOT NULL REFERENCES meals.Recipe(Id),
     CONSTRAINT PK_RecipeMeal PRIMARY KEY (MealId, RecipeId)
 )
 
 CREATE TABLE meals.IngredientStore (
-    IngredientId   int NOT NULL,
-    StoreId int NOT NULL,
-		Priority in NOT NULL,
+    IngredientId   int NOT NULL REFERENCES meals.Ingredient(Id),
+    StoreId int NOT NULL REFERENCES meals.Store(Id),
+    Priority int NOT NULL,
     CONSTRAINT PK_IngredientStore PRIMARY KEY (IngredientId, StoreId)
 )

@@ -4,6 +4,8 @@
     ViewData["Title"] = "Details";
 }
 
+<partial name="_TitleBar" />
+
 <h2>Details</h2>
 
 <div>
@@ -15,12 +17,6 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.StoreId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.StoreId)
         </dd>
     </dl>
 </div>

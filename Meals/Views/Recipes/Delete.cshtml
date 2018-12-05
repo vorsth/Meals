@@ -1,4 +1,4 @@
-﻿@model Meals.Models.Ingredient
+﻿@model Meals.Models.Recipe
 
 @{
     ViewData["Title"] = "Delete";
@@ -10,7 +10,7 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Ingredient</h4>
+    <h4>Recipe</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -18,6 +18,24 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Servings)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Servings)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ServingsOurs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ServingsOurs)
         </dd>
     </dl>
     

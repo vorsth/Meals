@@ -11,7 +11,5 @@ namespace Meals.Models
         public int Id { get; set; }
         [Column("name")]
         public string Name { get; set; }
-        [Column("storeid")]
-        public int StoreId { get; set; }
     }
 }

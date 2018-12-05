@@ -19,6 +19,10 @@ namespace Meals
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    config.AddEnvironmentVariables(prefix: "MEALS_");
+                })
                 .UseStartup<Startup>()
                 .Build();
     }

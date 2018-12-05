@@ -29,10 +29,7 @@ namespace Meals
 
             services.AddEntityFrameworkNpgsql()
                 .AddDbContext<MealsContext>(options =>
-                     options.UseNpgsql(Configuration.GetConnectionString("MealsContext")));
-
-            //services.AddDbContext<MealsContext>(options =>
-            //        options.UseSqlServer(Configuration.GetConnectionString("MealsContext")));
+                     options.UseNpgsql(Environment.GetEnvironmentVariable("MEALS_DB_CONN_STR")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

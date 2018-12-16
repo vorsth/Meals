@@ -22,6 +22,9 @@ namespace Meals.Models
         public int Quantity { get; set; }
 
         [Column("unitid")]
+        [ForeignKey("Unit")]
         public int UnitId { get; set; }
+
+        public Unit Unit { get; set; }
     }
 }

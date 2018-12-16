@@ -29,7 +29,7 @@ CREATE TABLE meals.RecipeIngredient (
 	RecipeId     int NOT NULL  REFERENCES meals.Recipe(Id),
 	IngredientId int NOT NULL REFERENCES meals.Ingredient(Id),
 	Quantity     int NOT NULL,
-	UnitId       int NOT NULL,
+	UnitId       int NOT NULL REFERENCES meals.Unit(Id),
 	CONSTRAINT PK_RecipeIngredient PRIMARY KEY (RecipeID, IngredientID)
 )
 

@@ -23,7 +23,10 @@ namespace Meals.Controllers.Web
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var mealsContext = _context.RecipeIngredient.Include(r => r.Ingredient).Include(r => r.Recipe);
+            var mealsContext = _context.RecipeIngredient
+                .Include(r => r.Ingredient)
+                .Include(r => r.Recipe)
+                .Include(r => r.Unit);
             return View(await mealsContext.ToListAsync());
         }
 
@@ -39,6 +42,7 @@ namespace Meals.Controllers.Web
             var recipeIngredient = await _context.RecipeIngredient
                 .Include(r => r.Ingredient)
                 .Include(r => r.Recipe)
+                .Include(r => r.Unit)
                 .FirstOrDefaultAsync(m => m.RecipeId == recipeId && m.IngredientId == ingredientId);
             if (recipeIngredient == null)
             {
@@ -54,6 +58,7 @@ namespace Meals.Controllers.Web
         {
             ViewData["IngredientId"] = new SelectList(_context.Ingredient, nameof(Ingredient.Id), nameof(Ingredient.Name));
             ViewData["RecipeId"] = new SelectList(_context.Recipe, nameof(Recipe.Id), nameof(Recipe.Name));
+            ViewData["UnitId"] = new SelectList(_context.Unit, nameof(Unit.Id), nameof(Unit.Name));
             return View();
         }
 
@@ -72,6 +77,7 @@ namespace Meals.Controllers.Web
             }
             ViewData["IngredientId"] = new SelectList(_context.Ingredient, nameof(Ingredient.Id), nameof(Ingredient.Name), recipeIngredient.IngredientId);
             ViewData["RecipeId"] = new SelectList(_context.Recipe, nameof(Recipe.Id), nameof(Recipe.Name), recipeIngredient.RecipeId);
+            ViewData["UnitId"] = new SelectList(_context.Unit, nameof(Unit.Id), nameof(Unit.Name), recipeIngredient.UnitId);
             return View(recipeIngredient);
         }
 
@@ -84,13 +90,17 @@ namespace Meals.Controllers.Web
                 return NotFound();
             }
 
-            var recipeIngredient = await _context.RecipeIngredient.FindAsync(recipeId, ingredientId);
+            var recipeIngredient = await _context.RecipeIngredient
+                .Include(r => r.Recipe)
+                .Include(r => r.Ingredient)
+                .FirstOrDefaultAsync(m => m.RecipeId == recipeId && m.IngredientId == ingredientId);
             if (recipeIngredient == null)
             {
                 return NotFound();
             }
             ViewData["IngredientId"] = new SelectList(_context.Ingredient, nameof(Ingredient.Id), nameof(Ingredient.Name), recipeIngredient.IngredientId);
             ViewData["RecipeId"] = new SelectList(_context.Recipe, nameof(Recipe.Id), nameof(Recipe.Name), recipeIngredient.RecipeId);
+            ViewData["UnitId"] = new SelectList(_context.Unit, nameof(Unit.Id), nameof(Unit.Name), recipeIngredient.UnitId);
             return View(recipeIngredient);
         }
 
@@ -128,6 +138,7 @@ namespace Meals.Controllers.Web
             }
             ViewData["IngredientId"] = new SelectList(_context.Ingredient, nameof(Ingredient.Id), nameof(Ingredient.Name), recipeIngredient.IngredientId);
             ViewData["RecipeId"] = new SelectList(_context.Recipe, nameof(Recipe.Id), nameof(Recipe.Name), recipeIngredient.RecipeId);
+            ViewData["UnitId"] = new SelectList(_context.Unit, nameof(Unit.Id), nameof(Unit.Name), recipeIngredient.UnitId);
             return View(recipeIngredient);
         }
 
@@ -143,6 +154,7 @@ namespace Meals.Controllers.Web
             var recipeIngredient = await _context.RecipeIngredient
                 .Include(r => r.Ingredient)
                 .Include(r => r.Recipe)
+                .Include(r => r.Unit)
                 .FirstOrDefaultAsync(m => m.RecipeId == recipeId && ingredientId == m.IngredientId);
             if (recipeIngredient == null)
             {

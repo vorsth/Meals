@@ -24,7 +24,7 @@
                 @Html.DisplayNameFor(model => model.Quantity)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UnitId)
+                @Html.DisplayNameFor(model => model.Unit)
             </th>
             <th></th>
         </tr>
@@ -42,7 +42,7 @@
                 @Html.DisplayFor(modelItem => item.Quantity)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UnitId)
+                @Html.DisplayFor(modelItem => item.Unit.Name)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { recipeId = item.RecipeId, ingredientId = item.IngredientId }) |

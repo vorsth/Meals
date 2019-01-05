@@ -3,11 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Meals.Models
 {
-    [Table("mealrecipe", Schema = "meals")]
-    public class MealRecipe
+    [Table("shoppinglistrecipe", Schema = "meals")]
+    public class ShoppingListRecipe
     {
-        [Key, Column("mealid", Order = 0)]
-        public int MealId { get; set; }
+        [Key, Column("shoppinglistid", Order = 0)]
+        public int ShoppingListId { get; set; }
 
         [Key, Column("recipeid", Order = 1)]
         public int RecipeId { get; set; }

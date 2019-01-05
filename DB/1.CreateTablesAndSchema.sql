@@ -33,15 +33,16 @@ CREATE TABLE meals.RecipeIngredient (
 	CONSTRAINT PK_RecipeIngredient PRIMARY KEY (RecipeID, IngredientID)
 )
 
-CREATE TABLE meals.Meal (
-	Id   serial       CONSTRAINT PK_Meal PRIMARY KEY,
-	Name varchar(255) NOT NULL
+CREATE TABLE meals.ShoppingList (
+	Id           serial                    CONSTRAINT PK_ShoppingList PRIMARY KEY,
+	Name         varchar(255)              NOT NULL,
+	CreationDate timestamp with time zone  NOT NULL
 )
 
-CREATE TABLE meals.MealRecipe (
-    MealId   int NOT NULL REFERENCES meals.Meal(Id),
+CREATE TABLE meals.ShoppingListRecipe (
+    ShoppingListId   int NOT NULL REFERENCES meals.ShoppingList(Id),
     RecipeId int NOT NULL REFERENCES meals.Recipe(Id),
-    CONSTRAINT PK_RecipeMeal PRIMARY KEY (MealId, RecipeId)
+    CONSTRAINT PK_ShoppingListRecipe PRIMARY KEY (ShoppingListId, RecipeId)
 )
 
 CREATE TABLE meals.IngredientStore (

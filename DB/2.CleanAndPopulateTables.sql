@@ -40,14 +40,14 @@ INSERT INTO meals.RecipeIngredient (recipeid, ingredientid, quantity, unitid) VA
 (2, 7, 1, 2),
 (2, 8, 2, 3);
 
-TRUNCATE TABLE meals.Meal CASCADE;
-SELECT setval('meals.meal_id_seq',1);
+TRUNCATE TABLE meals.ShoppingList CASCADE;
+SELECT setval('meals.shoppinglist_id_seq',1);
 
-INSERT INTO meals.Meal (name) VALUES
-('Spaghetti Casserole');
+INSERT INTO meals.ShoppingList (name, creationDate) VALUES
+('Week 1', now());
 
-TRUNCATE TABLE meals.MealRecipe CASCADE;
-INSERT INTO meals.MealRecipe (mealid, recipeid) VALUES
+TRUNCATE TABLE meals.ShoppingListRecipe CASCADE;
+INSERT INTO meals.ShoppingListRecipe (shoppinglistid, recipeid) VALUES
 (2,2);
 
 TRUNCATE TABLE meals.IngredientStore CASCADE;

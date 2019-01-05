@@ -7,8 +7,7 @@ namespace Meals.Models
     [Table("shoppinglist", Schema = "meals")]
     public class ShoppingList
     {
-        [Key]
-        [Column("id")]
+        [Key, Column("id")]
         public int Id { get; set; }
 
         [Column("name")]

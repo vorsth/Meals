@@ -47,8 +47,8 @@ INSERT INTO meals.ShoppingList (name, creationDate) VALUES
 ('Week 1', now());
 
 TRUNCATE TABLE meals.ShoppingListRecipe CASCADE;
-INSERT INTO meals.ShoppingListRecipe (shoppinglistid, recipeid) VALUES
-(2,2);
+INSERT INTO meals.ShoppingListRecipe (shoppinglistid, recipeid, quantity) VALUES
+(2,2,3);
 
 TRUNCATE TABLE meals.IngredientStore CASCADE;
 INSERT INTO meals.IngredientStore (ingredientid, storeid, priority) VALUES

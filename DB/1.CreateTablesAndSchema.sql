@@ -26,7 +26,7 @@ CREATE TABLE meals.Unit (
 )
 
 CREATE TABLE meals.RecipeIngredient (
-	RecipeId     int NOT NULL  REFERENCES meals.Recipe(Id),
+	RecipeId     int NOT NULL REFERENCES meals.Recipe(Id),
 	IngredientId int NOT NULL REFERENCES meals.Ingredient(Id),
 	Quantity     int NOT NULL,
 	UnitId       int NOT NULL REFERENCES meals.Unit(Id),
@@ -40,14 +40,15 @@ CREATE TABLE meals.ShoppingList (
 )
 
 CREATE TABLE meals.ShoppingListRecipe (
-    ShoppingListId   int NOT NULL REFERENCES meals.ShoppingList(Id),
-    RecipeId int NOT NULL REFERENCES meals.Recipe(Id),
+    ShoppingListId int NOT NULL REFERENCES meals.ShoppingList(Id),
+    RecipeId       int NOT NULL REFERENCES meals.Recipe(Id),
+    Quantity       int NOT NULL,
     CONSTRAINT PK_ShoppingListRecipe PRIMARY KEY (ShoppingListId, RecipeId)
 )
 
 CREATE TABLE meals.IngredientStore (
-    IngredientId   int NOT NULL REFERENCES meals.Ingredient(Id),
-    StoreId int NOT NULL REFERENCES meals.Store(Id),
-    Priority int NOT NULL,
+    IngredientId int NOT NULL REFERENCES meals.Ingredient(Id),
+    StoreId      int NOT NULL REFERENCES meals.Store(Id),
+    Priority     int NOT NULL,
     CONSTRAINT PK_IngredientStore PRIMARY KEY (IngredientId, StoreId)
 )

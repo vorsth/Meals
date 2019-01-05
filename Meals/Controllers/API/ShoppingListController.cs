@@ -11,56 +11,56 @@ namespace Meals.Controllers.API
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MealsController : ControllerBase
+    public class ShoppingListController : ControllerBase
     {
         private readonly MealsContext _context;
 
-        public MealsController(MealsContext context)
+        public ShoppingListController(MealsContext context)
         {
             _context = context;
         }
 
-        // GET: api/Meals
+        // GET: api/ShoppingList
         [HttpGet]
-        public IEnumerable<Meal> GetMeal()
+        public IEnumerable<ShoppingList> GetShoppingList()
         {
-            return _context.Meal;
+            return _context.ShoppingList;
         }
 
-        // GET: api/Meals/5
+        // GET: api/ShoppingList/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetMeal([FromRoute] int id)
+        public async Task<IActionResult> GetShoppingList([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var meal = await _context.Meal.FindAsync(id);
+            var shoppingList = await _context.ShoppingList.FindAsync(id);
 
-            if (meal == null)
+            if (shoppingList == null)
             {
                 return NotFound();
             }
 
-            return Ok(meal);
+            return Ok(shoppingList);
         }
 
-        // PUT: api/Meals/5
+        // PUT: api/ShoppingList/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMeal([FromRoute] int id, [FromBody] Meal meal)
+        public async Task<IActionResult> PutShoppingList([FromRoute] int id, [FromBody] ShoppingList shoppingList)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != meal.Id)
+            if (id != shoppingList.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(meal).State = EntityState.Modified;
+            _context.Entry(shoppingList).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +68,7 @@ namespace Meals.Controllers.API
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MealExists(id))
+                if (!ShoppingListExists(id))
                 {
                     return NotFound();
                 }
@@ -81,45 +81,45 @@ namespace Meals.Controllers.API
             return NoContent();
         }
 
-        // POST: api/Meals
+        // POST: api/ShoppingList
         [HttpPost]
-        public async Task<IActionResult> PostMeal([FromBody] Meal meal)
+        public async Task<IActionResult> PostShoppingList([FromBody] ShoppingList shoppingList)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Meal.Add(meal);
+            _context.ShoppingList.Add(shoppingList);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMeal", new { id = meal.Id }, meal);
+            return CreatedAtAction("GetShoppingList", new { id = shoppingList.Id }, shoppingList);
         }
 
-        // DELETE: api/Meals/5
+        // DELETE: api/ShoppingList/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMeal([FromRoute] int id)
+        public async Task<IActionResult> DeleteShoppingList([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var meal = await _context.Meal.FindAsync(id);
-            if (meal == null)
+            var shoppingList = await _context.ShoppingList.FindAsync(id);
+            if (shoppingList == null)
             {
                 return NotFound();
             }
 
-            _context.Meal.Remove(meal);
+            _context.ShoppingList.Remove(shoppingList);
             await _context.SaveChangesAsync();
 
-            return Ok(meal);
+            return Ok(shoppingList);
         }
 
-        private bool MealExists(int id)
+        private bool ShoppingListExists(int id)
         {
-            return _context.Meal.Any(e => e.Id == id);
+            return _context.ShoppingList.Any(e => e.Id == id);
         }
     }
 }

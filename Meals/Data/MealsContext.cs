@@ -35,7 +35,7 @@ namespace Meals.Models
 
         public DbSet<Meals.Models.Unit> Unit { get; set; }
 
-        public DbSet<Meals.Models.Meal> Meal { get; set; }
+        public DbSet<Meals.Models.ShoppingList> ShoppingList { get; set; }
 
         public DbSet<Meals.Models.RecipeIngredient> RecipeIngredient { get; set; }
 

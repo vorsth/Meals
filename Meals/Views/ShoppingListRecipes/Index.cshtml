@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Meals.Models.ShoppingListRecipe>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<partial name="_TitleBar" />
+
+<h2>Shopping List - Recipies</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ShoppingList)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShoppingList.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Recipe.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { shoppingListId = item.ShoppingListId, recipeId = item.RecipeId }) |
+                @Html.ActionLink("Details", "Details", new { shoppingListId = item.ShoppingListId, recipeId = item.RecipeId }) |
+                @Html.ActionLink("Delete", "Delete", new { shoppingListId = item.ShoppingListId, recipeId = item.RecipeId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

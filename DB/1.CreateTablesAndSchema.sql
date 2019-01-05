@@ -34,9 +34,9 @@ CREATE TABLE meals.RecipeIngredient (
 )
 
 CREATE TABLE meals.ShoppingList (
-	Id           serial                    CONSTRAINT PK_ShoppingList PRIMARY KEY,
-	Name         varchar(255)              NOT NULL,
-	CreationDate timestamp with time zone  NOT NULL
+	Id           serial       CONSTRAINT PK_ShoppingList PRIMARY KEY,
+	Name         varchar(255) NOT NULL,
+	CreationDate timestamp    NOT NULL
 )
 
 CREATE TABLE meals.ShoppingListRecipe (

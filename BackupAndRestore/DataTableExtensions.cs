@@ -27,9 +27,8 @@ namespace BackupAndRestore
             }
         }
 
-        public static DataTable ReadCsv(Stream stream)
+        public static DataTable ReadCsv(this DataTable dataTable, Stream stream)
         {
-            var dt = new DataTable();
             using(var sr = new StreamReader(stream))
             {
                 var columns = sr.ReadLine().Split(DELIMITER);
@@ -37,7 +36,7 @@ namespace BackupAndRestore
 
                 for(var i = 0; i < columns.Count(); i++)
                 {
-                    dt.Columns.Add(columns[i], columnTypes[i]);
+                    dataTable.Columns.Add(columns[i], columnTypes[i]);
                 }
 
                 var line = sr.ReadLine().Split(DELIMITER);
@@ -45,13 +44,12 @@ namespace BackupAndRestore
                 {
                     var parsedValues = line.Select((x, i) => ConvertToType(x, columnTypes[i])).ToArray();
 
-                    dt.Rows.Add(parsedValues);
+                    dataTable.Rows.Add(parsedValues);
                     line = sr.ReadLine()?.Split(DELIMITER);
                 }
 
             }
-
-            return dt;
+            return dataTable;
         }
 
         private static IConvertible ConvertToType(string val, Type t)

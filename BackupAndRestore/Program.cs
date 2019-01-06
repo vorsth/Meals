@@ -76,9 +76,9 @@ namespace BackupAndRestore
 
         private static void RestoreTable(string connString, string tableName)
         {
-            Console.WriteLine($"Restoring up table {tableName}...");
+            Console.WriteLine($"Restoring '{tableName}'...");
 
-            var dataTable = DataTableExtensions.ReadCsv(new FileStream($"{tableName}.csv", FileMode.Open));
+            var dataTable = new DataTable(tableName).ReadCsv(new FileStream($"{tableName}.csv", FileMode.Open));
             var columnNames = string.Join(',', dataTable.Columns.Cast<DataColumn>().Select(x => x.ColumnName));
             var valuesParamsList = new List<string>();
             for(var i = 0; i < dataTable.Columns.Count; i++)

@@ -1,0 +1,20 @@
+﻿@model Meals.ViewModels.ShopVM
+
+@{
+    ViewData["Title"] = Model.ShoppingList.Name;
+}
+
+<partial name="_TitleBar" />
+
+<h2>@ViewData["Title"]</h2>
+
+
+
+<ul>
+    @foreach(var sli in Model.Ingredients)
+    {
+        <li>
+            @sli.Quantity @sli.Unit.Name @sli.Ingredient.Name
+        </li>
+    }
+</ul>

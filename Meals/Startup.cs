@@ -10,6 +10,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using Meals.Models;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace Meals
 {
@@ -39,7 +41,11 @@ namespace Meals
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "lib")),
+                RequestPath = "/lib"
+            });
             app.UseMvc();
         }
     }

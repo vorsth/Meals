@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Meals.Models;
+using Meals.ViewModels;
 
 namespace Meals.Controllers.Web
 {
@@ -156,6 +157,34 @@ namespace Meals.Controllers.Web
             _context.ShoppingList.Remove(shoppingList);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+
+        [HttpGet("Shop/{shoppingListId}")]
+        public async Task<IActionResult> Shop(int? shoppingListId)
+        {
+            if (shoppingListId == null)
+            {
+                return NotFound();
+            }
+
+            var shoppingList = await _context.ShoppingList
+                .FirstOrDefaultAsync(s => s.Id == shoppingListId);
+            if(shoppingList == null)
+            {
+                return NotFound();
+            }
+
+            var ingredientsForList = await (from shoppinglist in _context.ShoppingList
+                                            join shoppinglistrecipe in _context.ShoppingListRecipe on shoppinglist.Id equals shoppinglistrecipe.ShoppingListId
+                                            join recipesingredient in _context.RecipeIngredient on shoppinglistrecipe.RecipeId equals recipesingredient.RecipeId
+                                            join ingredient in _context.Ingredient on recipesingredient.IngredientId equals ingredient.Id
+                                            join unit in _context.Unit on recipesingredient.UnitId equals unit.Id
+                                            where shoppinglist.Id == shoppingListId
+                                            select new ShoppingListIngredient(ingredient, recipesingredient.Quantity * shoppinglistrecipe.Quantity, unit))
+                                      .ToListAsync();
+
+            return View(new ShopVM(shoppingList, ingredientsForList));
         }
 
         private bool ShoppingListExists(int id)

@@ -12,20 +12,26 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ShoppingListId" class="control-label"></label>
-                <select asp-for="ShoppingListId" class="form-control" asp-items="ViewBag.ShoppingListId"></select>
+            <div class="form-group row">
+                <label asp-for="ShoppingList" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <select asp-for="ShoppingListId" class="form-control" asp-items="ViewBag.ShoppingListId"></select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Recipe" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <select asp-for="RecipeId" class="form-control" asp-items="ViewBag.RecipeId"></select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Quantity" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input asp-for="Quantity" class="form-control" />
+                </div>
             </div>
             <div class="form-group">
-                <label asp-for="RecipeId" class="control-label"></label>
-                <select asp-for="RecipeId" class="control-label" asp-items="ViewBag.RecipeId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Quantity" class="control-label"></label>
-                <input asp-for="Quantity" class="control-label" />
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
